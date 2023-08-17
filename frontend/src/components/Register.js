@@ -85,12 +85,7 @@ const Register = () => {
 
   return (
     <>
-      <section className="w-full min-h-screen hero-gradient loginWrapper">
-        <img
-          src="/corner-shape.svg"
-          alt=""
-          className="absolute left-0 top-0 w-[150px] z-[1]"
-        />
+      
         <div className="w-full flex flex-col lg:flex-row z-[2]">
           <div className="w-full px-4 lg:px-10 xl:px-20 py-10 lg:py-20 relative">
             <form
@@ -332,7 +327,7 @@ const Register = () => {
             className="absolute right-0 bottom-0 w-[80px] lg:w-auto z-[0]"
           />
         </div>
-      </section>
+     
     </>
   );
 };
