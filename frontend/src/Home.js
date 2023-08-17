@@ -4,6 +4,7 @@ import Register from "./components/Register";
 function App() {
   return (
     <>
+    <Header />
       <Register />
       {/* <Header />
       <div className="App">
