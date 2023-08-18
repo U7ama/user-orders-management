@@ -33,6 +33,16 @@ exports.createOrder = async (req, res) => {
   }
 };
 
+exports.geAllOrders = async (req, res) => {
+  try {
+    const orders = await Order.find({});
+    res.status(200).json({ orders });
+  } catch (error) {
+    console.error("Error getting user orders:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 exports.getUserOrders = async (req, res) => {
   const userId = req.params.userId;
 
@@ -47,10 +57,8 @@ exports.getUserOrders = async (req, res) => {
 
 exports.getOrderById = async (req, res) => {
   const orderId = req.params.orderId;
-  console.log(orderId);
   try {
     const order = await Order.findById(orderId);
-    console.log("order", order);
     if (!order) {
       return res.status(404).json({ message: "Order not found" });
     }
@@ -63,7 +71,6 @@ exports.getOrderById = async (req, res) => {
 
 exports.updateOrder = async (req, res) => {
   const orderId = req.params.orderId;
-  console.log("orderId", orderId);
   const {
     orderID,
     customerName,

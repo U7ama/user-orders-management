@@ -2,8 +2,7 @@ const jwt = require("jsonwebtoken");
 
 // Middleware to verify token and check user role
 const authenticateAndAuthorize = (req, res, next) => {
-  const token = req.cookies.token;
-  console.log("token", token);
+  const token = req.cookies.token || req.body.token;
   if (!token) {
     return res.status(401).json({ message: "Authentication required" });
   }
@@ -13,15 +12,14 @@ const authenticateAndAuthorize = (req, res, next) => {
       return res.status(403).json({ message: "Invalid token" });
     }
 
-    const userRole = decodedToken.role; // Assuming you have the role in decodedToken
-    console.log("userRole", decodedToken);
-    // Allow access to certain routes based on user role
+    const userRole = decodedToken.role;
+
     if (userRole === "ADMIN") {
-      next(); // Allow further processing for admins
+      next();
     } else if (userRole === "VIEWER") {
       res.status(403).json({ message: "Permission denied" });
     } else {
-      res.status(403).json({ message: "Permission denied" }); // Deny access for unknown roles
+      res.status(403).json({ message: "Permission denied" });
     }
   });
 };
