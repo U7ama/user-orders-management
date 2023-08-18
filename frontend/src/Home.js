@@ -5,7 +5,7 @@ import Header from "./components/Header";
 import Register from "./components/Register";
 import Orders from "./components/Orders";
 
-function App() {
+function Home() {
   const [showLoginForm, setShowLoginForm] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   console.log("isLoggedIn", isLoggedIn);
