@@ -10,10 +10,9 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 app.use(cors());
-
-mongoose
-  .connect(process.env.DB_URI)
-  .then(() => console.log("MONGO DB CONNECTED ..."));
+const DB_URI =
+  "mongodb+srv://usama:usama@cluster0.iqyds.mongodb.net/UsersOrderManagement?retryWrites=true&w=majority";
+mongoose.connect(DB_URI).then(() => console.log("MONGO DB CONNECTED ..."));
 
 app.use("/auth", authRoutes);
 app.use("/orders", orderRoutes);
