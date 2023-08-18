@@ -1,35 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-const Header = () => {
-  const [isSticky, setIsSticky] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsSticky(true);
-      } else {
-        setIsSticky(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
+const Header = ({ onLoginClick, onRegisterClick, isLoggedIn, onLogout }) => {
   return (
     <header
-      className={`bg-white p-4 drop-shadow flex justify-between items-center cursor-pointer z-[30] ${
-        isSticky ? "fixed top-0 left-0 right-0" : ""
-      }`}
+      className={`bg-white p-4 drop-shadow flex justify-between items-center cursor-pointer z-[30]`}
     >
-      <button className="text-black hover:text-[#b7b7b7] focus:outline-none">
-        Register
-      </button>
-      <button className="text-black hover:text-[#b7b7b7] focus:outline-none">
-        Login
-      </button>
+      {!isLoggedIn ? (
+        <button
+          className="text-black hover:text-[#b7b7b7] focus:outline-none"
+          onClick={onRegisterClick}
+        >
+          Register
+        </button>
+      ) : (
+        <div className="text-black hover:text-[#b7b7b7] focus:outline-none"></div>
+      )}
+      {isLoggedIn ? (
+        <button
+          className="text-black hover:text-[#b7b7b7] focus:outline-none"
+          onClick={onLogout}
+        >
+          Log Out
+        </button>
+      ) : (
+        <div>
+          <button
+            className="text-black hover:text-[#b7b7b7] focus:outline-none"
+            onClick={onLoginClick}
+          >
+            Login
+          </button>
+          {/* <button className="text-black hover:text-[#b7b7b7] focus:outline-none" onClick={onRegisterClick}>Register</button> */}
+        </div>
+      )}
     </header>
   );
 };

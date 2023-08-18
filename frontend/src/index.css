@@ -12,5 +12,5 @@
     background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('../public/bg-login.jpeg');
     background-position: center;
     background-size: cover;
-    height: 100vh;
+    height: auto;
 }
