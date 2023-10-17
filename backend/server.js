@@ -11,7 +11,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(cors());
 const DB_URI =
-  "mongodb+srv://usama:usama@cluster0.iqyds.mongodb.net/UsersOrderManagement?retryWrites=true&w=majority";
+    `process.env.MONGO_URL`;
 mongoose.connect(DB_URI).then(() => console.log("MONGO DB CONNECTED ..."));
 
 app.use("/auth", authRoutes);
